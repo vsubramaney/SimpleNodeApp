@@ -1,0 +1,19 @@
+extends layout
+block content
+    h1= title
+    #questions
+        - each question in questions
+            div.question
+                br
+                span.label Question :
+                div.question= question.question
+                br
+                span.label Values :
+                div.values= question.values
+                br
+                span.label Answers :
+                div.answers= question.answers
+                br
+        a(href="/questions/new")!= "Add New Question"
+        br
+        a(href="/questions/remove")!= "Remove a Question"

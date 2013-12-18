@@ -1,0 +1,19 @@
+//Created by vsubramaney on 12/17/13.
+
+extends layout
+block content
+        h1= title
+            form( method="post")
+                div
+                    div
+                        span.label Question :
+                        input(type="text", name="question", id="editQuestionsQuestion")
+                    div
+                        span.label Value :
+                        input(type="text", name="values", id="editQuestionsValue")
+                    div
+                        span.label Answers :
+                        input(type="text", name="answers", id="editQuestionsValue")
+                    div#editQuestionsSubmit
+                        input(type="submit", value="Save")
+            a(href="/")!= "Back to Questions List"
