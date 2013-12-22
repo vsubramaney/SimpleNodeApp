@@ -1,9 +1,9 @@
 /**
  * Created by vsubramaney on 12/22/13.
  */
-var Model = require("./Base"),
+var Model = require("./PBBase"),
     model = new Model();
-var ContentModel = model.extend({
+var DataPersistenceBridge = model.extend({
     insert: function(data, callback) {
         this.collection().insert(data, {}, callback || function(){ });
     },
@@ -17,4 +17,4 @@ var ContentModel = model.extend({
         this.collection().findAndModify({question: question}, [], {}, {remove: true}, callback);
     }
 });
-module.exports = ContentModel;
+module.exports = DataPersistenceBridge;

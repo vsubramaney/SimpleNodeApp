@@ -4,8 +4,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var config = require('./config')();
@@ -17,7 +15,7 @@ var app = express();
 
 app.configure(function(){
     app.set('port', process.env.PORT || 3000);
-    app.set('views', __dirname + '/views');
+    app.set('views', __dirname + '/templates');
     app.set('view engine', 'jade');
     app.set('view options', {layout: false});
     app.use(express.favicon());
@@ -34,24 +32,31 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/node-mongo-question', function(err, db) {
-    if(err) {
-        console.log('Sorry, there is no mongo db server running.');
-    } else {
-        var attachDB = function(req, res, next) {
-            req.db = db;
-            next();
-        };
-        app.all('/question*', attachDB, function(req, res, next) {
-            questionsProvider.run(req, res, next);
-        });
+MongoClient.connect('mongodb://' +
+    config.mongo.host + ':' + config.mongo.port +
+    '/node-mongo-question', function(err, db) {
+        if(err) {
+            console.log('Sorry, there is no mongo db server running.');
+        }
+        else {
+            var attachDB = function(req, res, next) {
+                req.db = db;
+                next();
+            };
+            app.all('/', attachDB, function(req, res, next) {
+                questionsProvider.run(req, res, next);
+            });
 
-        http.createServer(app).listen(config.port, function() {
-            console.log(
-                'Successfully connected to mongodb://' + config.mongo.host + ':' + config.mongo.port,
-                '\nExpress server listening on port ' + config.port
-            );
-        });
-    }
+            app.all('/question*', attachDB, function(req, res, next) {
+                questionsProvider.run(req, res, next);
+            });
+
+            http.createServer(app).listen(config.port, function() {
+                console.log(
+                    'Successfully connected to mongodb://' + config.mongo.host + ':' + config.mongo.port,
+                    '\nExpress server listening on port ' + config.port
+                );
+            });
+        }
 });
 

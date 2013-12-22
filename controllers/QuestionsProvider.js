@@ -5,25 +5,24 @@
 
 var BaseController = require("./Base"),
     //View = require("../views/"),
-    model = new (require("../models/ContentModel"));
+    dataPersistenceBridge = new (require("../dao/DataPersistenceBridge"));
 
 
     module.exports = BaseController.extend({
 
         run: function(req, res, next) {
-            model.setDB(req.db);
+            dataPersistenceBridge.setDB(req.db);
             var self = this;
-            self.list(function(error, qtns){
-                self.returnTheForm(req, res, qtns);
-            });
+            self.returnTheForm(req, res);
+
         },
         remove: function(req, callback) {
             var question = req.param('question');
             console.log("removing question "+question);
-            model.remove(question, callback);
+            dataPersistenceBridge.remove(question, callback);
         },
         list: function(callback) {
-            model.getlist(function(err, records) {
+            dataPersistenceBridge.getlist(function(err, records) {
                 if( err ) {
                     callback(err);
                 }
@@ -42,7 +41,7 @@ var BaseController = require("./Base"),
                 "values :{ "+data.values+" } " +
                 "answers :{" +data.answers+" }");
 
-            model.insert(data, callback);
+            dataPersistenceBridge.insert(data, callback);
         },
         update: function(req, callback) {
             var data = {
@@ -51,17 +50,16 @@ var BaseController = require("./Base"),
                 answers: req.param('answers')
             }
             console.log("Vinod data -"+data.question+data.values+data.answers);
-            model.insert(data, function(err) {
+            dataPersistenceBridge.insert(data, function(err) {
                 res.redirect('/');
             });
         },
-        returnTheForm : function(req, res, qtns) {
+        returnTheForm : function(req, res) {
             var self = this;
             if (req.body && req.body.save && req.body.save == "yes") {
                 self.save(req, function(){
                     console.log("record inserted!");
                 });
-
                 self.renderHome(req, res);
             } else if (req.body && req.body.remove && req.body.remove == "yes") {
                 self.remove(req,function(){
@@ -69,15 +67,10 @@ var BaseController = require("./Base"),
                 });
                 self.renderHome(req, res);
             }
-            else if (req.query && req.query.action === "home"){
-                res.render('index', {
-                    title: 'Questions',
-                    questions:qtns
-                });
-            }
             else if(req.query && req.query.action === "new"){
                res.render('question_new');
-            } else if(req.query && req.query.action === "remove") {
+            }
+            else if(req.query && req.query.action === "remove") {
                 res.render('question_remove');
             }
             else {
