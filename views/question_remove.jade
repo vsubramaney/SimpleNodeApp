@@ -9,5 +9,6 @@ block content
                     span.label Question :
                     input(type="text", name="question", id="editQuestionsQuestion")
                 div#editQuestionsSubmit
+                    input(type="hidden", name="remove", value="yes")
                     input(type="submit", value="Remove")
-                a(href="/")!= "Back to Questions List"
+                a(href="/questions?action=home")!= "Back to Questions List"

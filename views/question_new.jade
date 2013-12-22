@@ -15,5 +15,6 @@ block content
                         span.label Answers :
                         input(type="text", name="answers", id="editQuestionsValue")
                     div#editQuestionsSubmit
+                        input(type="hidden", name="save", value="yes")
                         input(type="submit", value="Save")
-            a(href="/")!= "Back to Questions List"
+            a(href="/questions?action=home")!= "Back to Questions List"
