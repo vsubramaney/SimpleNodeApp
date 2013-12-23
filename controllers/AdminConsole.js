@@ -9,6 +9,7 @@ var BaseController = require("./Base"),
     module.exports = BaseController.extend({
 
         run: function(req, res, next) {
+            console.log(req.url);
             questionProviderAction = new QuestionProviderActions(req);
             var self = this;
             self.returnTheForm(req, res);
@@ -24,22 +25,38 @@ var BaseController = require("./Base"),
                     console.log("record inserted!");
                 });
             }
-            if (req.body && req.body.remove && req.body.remove == "yes") {
+            else if (req.body && req.body.authenticate && req.body.authenticate == "yes"){
+                var username = req.param('username');
+                var pwd = req.param('password');
+                console.log(username+" "+pwd);
+                if (username == "admin" && pwd == "admin") {
+                    self.renderHome(req, res);
+                    return;
+                } else {
+                    res.render('admin_login');
+                    return;
+                }
+            }
+            else if (req.body && req.body.remove && req.body.remove == "yes") {
                 questionProviderAction.remove(req,function(){
                     console.log("record removed!");
                 });
             }
-            if(req.query && req.query.action === "new"){
+            else if(req.query && req.query.action === "login"){
+                res.render('admin_login');
+                return;
+            }
+            else if(req.query && req.query.action === "new"){
                res.render('question_new');
                 return;
             }
-            if(req.query && req.query.action === "remove") {
+            else if(req.query && req.query.action === "remove") {
                 res.render('question_remove');
                 return;
+            } else {
+                self.renderHome(req, res);
+                return;
             }
-
-            self.renderHome(req, res);
-            return;
 
         } ,
 

@@ -56,11 +56,13 @@ module.exports = BaseController.extend({
     renderProblem : function (titleValue, shouldGetNewProblem, res){
         var problemNo = 0;
         if (shouldGetNewProblem == true){
-            problemNo = this.randomFromInterval(0,2);
+            problemNo = this.randomFromInterval(0,3);
             console.log("problemNo - "+problemNo);
         }
         questionProviderAction.list(function(error, qtns){
-            qtn = qtns[problemNo];
+            console.log("question - "+qtns);
+            qtn = qtns[problemNo].question;
+            console.log("question - "+qtn);
             res.render('problems_window',{title: titleValue,
                 question: qtn});
         });
