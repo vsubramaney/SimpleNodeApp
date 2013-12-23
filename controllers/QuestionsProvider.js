@@ -9,7 +9,7 @@ var BaseController = require("./Base"),
     module.exports = BaseController.extend({
 
         run: function(req, res, next) {
-            questionProviderAction = new QuestionProviderAction(req);
+            questionProviderAction = new QuestionProviderActions(req);
             var self = this;
             self.returnTheForm(req, res);
         },
@@ -17,7 +17,7 @@ var BaseController = require("./Base"),
         /*
         * returns the form that needs to be rendered
         * */
-        returnTheForm : function(req, res) {
+        returnTheForm: function(req, res) {
             var self = this;
             if (req.body && req.body.save && req.body.save == "yes") {
                 questionProviderAction.save(req, function(){
@@ -43,8 +43,9 @@ var BaseController = require("./Base"),
         /*
          * method to render home page
          * */
-        renderHome : function(req, res){
+        renderHome: function(req, res){
             var self = this;
+            console.log(questionProviderAction);
             questionProviderAction.list(function(error, qtns){
                 res.render('index', {
                     title: 'Questions',
