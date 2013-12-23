@@ -31,12 +31,15 @@ var BaseController = require("./Base"),
             }
             if(req.query && req.query.action === "new"){
                res.render('question_new');
+                return;
             }
             if(req.query && req.query.action === "remove") {
                 res.render('question_remove');
+                return;
             }
 
             self.renderHome(req, res);
+            return;
 
         } ,
 

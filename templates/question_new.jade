@@ -3,15 +3,15 @@
 extends layout
 block content
         h1= title
-            form( method="post")
+        form( method="post")
+            div
                 div
-                    div
-                        span.label Question :
-                        input(type="text", name="question", id="editQuestionsQuestion")
-                    div
-                        span.label Answers :
-                        input(type="text", name="answers", id="editQuestionsValue")
-                    div#editQuestionsSubmit
-                        input(type="hidden", name="save", value="yes")
-                        input(type="submit", value="Save")
+                    span.label Question :
+                    input(type="text", name="question", id="editQuestionsQuestion")
+                div
+                    span.label Answers :
+                    input(type="text", name="answers", id="editQuestionsValue")
+                div#editQuestionsSubmit
+                    input(type="hidden", name="save", value="yes")
+                    input(type="submit", value="Save")
             a(href="/admin?action=home")!= "Back to Questions List"

@@ -4,13 +4,10 @@ block content
     #questions
         - each question in questions
             div.question
-                br
                 span.label Question :
                 div.question= question.question
-                br
-                span.label Answers :
+                span.label Ans :
                 div.answers= question.answers
-                br
         a(href="/admin?action=new")!= "Add New Question"
         br
         a(href="/admin?action=remove")!= "Remove a Question"

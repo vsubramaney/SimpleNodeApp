@@ -3,21 +3,20 @@
 
 extends layout
 block content
+    #title
     h1= title
     form(method='post')
         div
-            b
-                span.label Question :
+            span.label Question :
             question= question.question
             input(type="hidden", name="question", value=question.question, id="validateQuestion")
             br
         br
         div
-            b
-                span.label Ans:
-                input#answer(type='text', name='answer', id="validateQuestion")
+            span.label Ans:
+            input#answer(type='text', name='answer', id="validateQuestion")
         br
         br
         div#validateQuestion
             input(type="hidden", name="validate", value="yes")
-            input(type="submit", value="validate answer")
+            input(type="submit", value="validate answer", id="validateAnswerButton")
