@@ -15,6 +15,9 @@ var DataPersistenceBridge = model.extend({
     },
     remove: function(question, callback) {
         this.collection().findAndModify({question: question}, [], {}, {remove: true}, callback);
+    },
+    getQuestion: function(question, callback) {
+        this.collection().findOne({question: question}, callback);
     }
 });
 module.exports = DataPersistenceBridge;

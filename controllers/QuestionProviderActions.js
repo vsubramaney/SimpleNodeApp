@@ -39,11 +39,9 @@ QuestionProviderActions.prototype.list= function(callback) {
 QuestionProviderActions.prototype.save= function(req, callback) {
         var data = {
             question: req.param('question'),
-            values: req.param('values'),
             answers: req.param('answers')
         }
         console.log("Inserting data - question :{"+data.question+ " } " +
-            "values :{ "+data.values+" } " +
             "answers :{" +data.answers+" }");
 
         dataPersistenceBridge.insert(data, callback);
@@ -55,10 +53,9 @@ QuestionProviderActions.prototype.save= function(req, callback) {
 QuestionProviderActions.prototype.update= function(req, callback) {
         var data = {
             question: req.param('question'),
-            values: req.param('values'),
             answers: req.param('answers')
         }
-        console.log("Vinod data -"+data.question+data.values+data.answers);
+        console.log("data -"+data.question+data.answers);
         dataPersistenceBridge.update(data, function(err) {
             res.redirect('/');
         })

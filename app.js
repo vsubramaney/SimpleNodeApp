@@ -8,7 +8,8 @@ var http = require('http');
 var path = require('path');
 var config = require('./config')();
 var MongoClient = require('mongodb').MongoClient;
-var questionsProvider = require('./controllers/QuestionsProvider');
+var adminConsole = require('./controllers/AdminConsole');
+var mainConsole = require('./controllers/MainConsole');
 
 
 var app = express();
@@ -44,11 +45,14 @@ MongoClient.connect('mongodb://' +
                 next();
             };
             app.all('/', attachDB, function(req, res, next) {
-                questionsProvider.run(req, res, next);
+                mainConsole.run(req, res, next);
+            });
+            app.all('/game*', attachDB, function(req, res, next) {
+                mainConsole.run(req, res, next);
             });
 
-            app.all('/question*', attachDB, function(req, res, next) {
-                questionsProvider.run(req, res, next);
+            app.all('/admin*', attachDB, function(req, res, next) {
+                adminConsole.run(req, res, next);
             });
 
             http.createServer(app).listen(config.port, function() {

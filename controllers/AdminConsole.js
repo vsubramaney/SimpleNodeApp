@@ -47,7 +47,7 @@ var BaseController = require("./Base"),
             var self = this;
             console.log(questionProviderAction);
             questionProviderAction.list(function(error, qtns){
-                res.render('index', {
+                res.render('admin_home', {
                     title: 'Questions',
                     questions:qtns
                 });

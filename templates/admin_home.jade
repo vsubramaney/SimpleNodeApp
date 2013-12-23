@@ -8,12 +8,9 @@ block content
                 span.label Question :
                 div.question= question.question
                 br
-                span.label Values :
-                div.values= question.values
-                br
                 span.label Answers :
                 div.answers= question.answers
                 br
-        a(href="/questions?action=new")!= "Add New Question"
+        a(href="/admin?action=new")!= "Add New Question"
         br
-        a(href="/questions?action=remove")!= "Remove a Question"
+        a(href="/admin?action=remove")!= "Remove a Question"
