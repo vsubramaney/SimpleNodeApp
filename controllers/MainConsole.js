@@ -38,7 +38,7 @@ module.exports = BaseController.extend({
         }
 
         if(req.query && req.query.render === "problems_window"){
-            this.renderProblem("New Problem", false, res);
+            this.renderProblem("New Problem to solve", false, res);
             return;
         }
 

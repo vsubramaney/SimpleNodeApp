@@ -1,22 +1,28 @@
 //
    Created by vsubramaney on 12/23/13.
 
-extends layout
-block content
-    #title
-    h1= title
-    form(method='post')
-        div
-            span.label Question :
-            question= question
-            input(type="hidden", name="question", value=question, id="validateQuestion")
-            br
-        br
-        div
-            span.label Ans:
-            input#answer(type='text', name='answer', id="validateQuestion")
-        br
-        br
-        div#validateQuestion
-            input(type="hidden", name="validate", value="yes")
-            input(type="submit", value="validate answer", id="validateAnswerButton")
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=iso-8859-1')
+        title Problems Window
+        link(href='/stylesheets/problem-box.css', rel='stylesheet', type='text/css')
+    body
+        form(method='post')
+            div(style='padding: 80px 0 0 250px;')
+                #problem-box
+                    h2  Challenge and gain points to play more..
+                    br
+                    b
+                        #problem-box-name(style='margin-top: 20px;') Question:
+                    #problem-box-field(style='margin-top: 20px;')
+                        question= question
+                        input(type="hidden", name="question", value=question, id="validateQuestion")
+                    br
+                    b
+                        #problem-box-name Ans:
+                    #problem-box-field(style='margin-top: 20px;')
+                        input#answer(type='text', name='answer', id="validateQuestion")
+                    br
+                    br
+                    input(type="hidden", name="validate", value="yes")
+                    input(type="submit", value="validate answer", id="validateAnswerButton")
