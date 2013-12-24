@@ -1,11 +1,12 @@
 //
    Created by vsubramaney on 12/23/13.
-
 html
     head
         link(rel='stylesheet', href='/stylesheets/style.css')
         title Game Frames
     body
+        video#WaterVideo( src='http://ie.microsoft.com/testdrive/Performance/FishBowl/Video/Water.mp4', preload='preload', autoplay='autoplay', loop='loop')
+        script(type='text/javascript', src='javascripts/Water.js')
         ul#menu
             li
                 a(href='/admin?action=login' target='_blank') Admin
@@ -17,8 +18,5 @@ html
                 a(href='#') Register
             li
                 a(href='#') Login
-        #game
-            center
-                #game-content(style='width: 500px; height: 450px;')
-                    embed#flashobj_mc(width='100%', height='100%', quality='high', name='flashobj_mc', src='http://media.jaludo.com/gold_digger/fisherman_sam.swf', x-shockwave-flash='', application='')
-            span#game-loading-text
+
+
