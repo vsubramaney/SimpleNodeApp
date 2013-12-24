@@ -10,6 +10,7 @@ var config = require('./config')();
 var MongoClient = require('mongodb').MongoClient;
 var adminConsole = require('./controllers/AdminConsole');
 var mainConsole = require('./controllers/MainConsole');
+var test = require('./controllers/test');
 
 
 var app = express();
@@ -46,6 +47,9 @@ MongoClient.connect('mongodb://' +
                 req.db = db;
                 next();
             };
+//            app.all('/uploadData',attachDB, function(req, res, next) {
+//               test.run(req,res,next) ;
+//            });
             app.all('/', attachDB, function(req, res, next) {
                 mainConsole.run(req, res, next);
             });

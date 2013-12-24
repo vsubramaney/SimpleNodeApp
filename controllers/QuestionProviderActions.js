@@ -36,11 +36,8 @@ QuestionProviderActions.prototype.list= function(callback) {
 /*
  * method to persist a question in DB
  * */
-QuestionProviderActions.prototype.save= function(req, callback) {
-        var data = {
-            question: req.param('question'),
-            answers: req.param('answers')
-        }
+QuestionProviderActions.prototype.save= function(data, callback) {
+        console.log(data);
         console.log("Inserting data - question :{"+data.question+ " } " +
             "answers :{" +data.answers+" }");
 

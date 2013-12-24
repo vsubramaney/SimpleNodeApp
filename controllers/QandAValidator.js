@@ -19,14 +19,20 @@ QandAValidator.prototype.validate = function(req, callback) {
        if (err) {
            console.log("error - "+err);
        }  else {
-           answer = record.answers;
-           console.log("ans entered - "+data.question.answer+
-               " ans from DB -"+answer);
-           if (data.answer == answer) {
-               callback(true);
-           } else {
-            callback(false);
+           var answers = record.answers;
+           console.log("ans entered - "+data.answer+
+               " ans from DB -"+answers);
+           var result = false;
+           for (i=0; i<answers.length; i++)
+           {
+               if (data.answer.trim === answers[i].trim) {
+                   result = true;
+                   break;
+               } else {
+                   result = false;
+               }
            }
+           callback(result);
        }
     });
 }

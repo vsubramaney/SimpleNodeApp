@@ -18,6 +18,7 @@ var BaseController = require("./Base"),
                 req.session.authenticated = true;
                 req.session.save();
                 self.returnTheForm(req, res);
+                return;
             } else {
                 res.render('admin_login');
                 return;
@@ -41,14 +42,21 @@ var BaseController = require("./Base"),
         returnTheForm: function(req, res) {
             var self = this;
             if (req.body && req.body.save && req.body.save == "yes") {
-                questionProviderAction.save(req, function(){
+                var data = {
+                    "question": req.param('question'),
+                    "answers": req.param('answers')
+                };
+                questionProviderAction.save(data, function(){
                     console.log("record inserted!");
                 });
+                self.renderHome(req, res);
+                return;
             }
             else if (req.body && req.body.remove && req.body.remove == "yes") {
                 questionProviderAction.remove(req,function(){
                     console.log("record removed!");
                 });
+                return;
             }
             else if(req.query && req.query.action === "new"){
                res.render('question_new');
