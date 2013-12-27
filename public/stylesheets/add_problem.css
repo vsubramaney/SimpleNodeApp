@@ -1,0 +1,71 @@
+
+body {
+    padding: 2px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    text-stroke: 1px rgba(255,255,255,0.1);
+    color: #140c55;
+    background: #288a9b;
+}
+
+#problem-box {
+    width:333px;
+    height: 500px;
+    padding: 58px 76px 0 76px;
+    text-align: left;
+    color: #140c55;
+    font: 12px Arial, Helvetica, sans-serif;
+    background: #288a9b;
+}
+
+/*#problem-box img {*/
+    /*border:none;*/
+/*}*/
+
+#problem-box h2 {
+    padding:0;
+    margin:0;
+    color: #ebebeb;
+    font: bold 44px "Calibri", Arial;
+}
+
+
+/*#problem-box-name {*/
+    /*float: left;*/
+    /*display:inline;*/
+    /*width:100px;*/
+    /*text-align: right;*/
+    /*padding: 14px 10px 0 0;*/
+    /*margin:0 0 7px 0;*/
+/*}*/
+
+/*#problem-box-field {*/
+    /*float: left;*/
+    /*display:inline;*/
+    /*width:230px;*/
+    /*margin:0;*/
+    /*margin:0 0 7px 0;*/
+/*}*/
+
+
+/*.form-problem  {*/
+    /*width: 205px;*/
+    /*padding: 10px 4px 6px 3px;*/
+    /*border: 1px solid #52511e;*/
+    /*background-color: #8a8a19;*/
+    /*font-size: 16px;*/
+    /*color: #ebebeb;*/
+/*}*/
+
+
+.problem-box-options  {
+    clear:both;
+    padding-left:87px;
+    font-size: 11px;
+}
+
+.problem-box-options a {
+    color: #ebebeb;
+    font-size: 11px;
+}

@@ -1,0 +1,23 @@
+//Created by vsubramaney on 12/27/13.
+
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=iso-8859-1')
+        title Add Problem
+        link(href='/stylesheets/add_problem.css', rel='stylesheet', type='text/css')
+    body
+        form(method='post', action='/admin/remove_problem')
+            div(style='padding: 100px 0 0 250px;')
+                #problem-box
+                    h2 Delete the problem
+                        br
+                        br
+                    #problem-box-name(style='margin-top: 20px;') Question:
+                        #problem-box-field(style='margin-top: 20px;')
+                            input.form-problem(name='problem_statement', type='text', title='', value='', size='30', maxlength='2048')
+                        br
+                        input(type='submit', value='remove problem')
+                        br
+                        a(href="/admin/home")!= "home"
+
+

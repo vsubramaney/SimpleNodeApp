@@ -1,0 +1,22 @@
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=iso-8859-1')
+        title Add Problem
+        link(href='/stylesheets/add_problem.css', rel='stylesheet', type='text/css')
+    body
+        form(method='post', action='/admin/add_problem')
+            div(style='padding: 100px 0 0 250px;')
+                #problem-box
+                    h2 Create problems to solve
+                        br
+                        br
+                    #problem-box-name(style='margin-top: 20px;') Question:
+                        #problem-box-field(style='margin-top: 20px;')
+                            input.form-problem(name='problem_statement', type='text', title='', value='', size='30', maxlength='2048')
+                    #problem-box-name Answers:
+                        #problem-box-field
+                            input.form-problem(name='answers', type='text', title='answers', value='', size='30', maxlength='2048')
+                        br
+                        input(type='submit', value='save problem')
+                        br
+                        a(href="/admin/home")!= "home"

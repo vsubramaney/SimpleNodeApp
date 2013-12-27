@@ -1,0 +1,15 @@
+extends layout
+block content
+    h1= title
+    #questions
+        - each question in questions
+            div.question
+                span.label
+                b Question :
+                div.question= question.problem_statement
+                span.label
+                 b Ans :
+                div.answers= question.answers
+        a(href="/admin/add_problem")!= "Add New Question"
+        br
+        a(href="/admin/remove_problem")!= "Remove a Question"
