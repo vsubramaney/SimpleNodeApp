@@ -45,9 +45,6 @@ ProblemSchema.path('answers').validate(function (answers) {
 
 ProblemSchema.statics = {
 
-//    remove :function(question, callback) {
-//      this.findAndModify({problem_statement: question}, [], {}, {remove: true}).exec(callback);
-//    },
 
     /**
      * Find problem by id

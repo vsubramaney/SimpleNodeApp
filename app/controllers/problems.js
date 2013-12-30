@@ -8,13 +8,17 @@
 var mongoose = require('mongoose')
     , Problems = mongoose.model('Problems')
     , utils = require('../../lib/utils')
+  //  , rewardPoints = require('./rewardPoints')
+
 
 exports.new_problem = function (req, res) {
     randomNo = randomFromInterval(0,31);
     console.log("random No - "+randomNo);
-    Problems.list('',function(error, problems){
-        return res.render('main/problem',{title: 'problem',
-            question: problems[randomNo]});
+
+    Problems.randomProblem(randomNo, function(error, problem){
+       var prblm = problem[0];
+       return res.render('main/problem',{title: 'problem',
+            question: prblm})
     });
 }
 
@@ -26,15 +30,24 @@ exports.validate_problem = function (req, res) {
         if (error) {
             console.log(error);
         } else {
-                console.log(problem.answers.trim());
-                console.log(answer_entered.trim());
-                if (problem.answers.trim() === answer_entered.trim()) {
-                    console.log('valid answer!')
-                    correct_answer = true;
-                }
+
+            console.log(problem.answers);
+            console.log(answer_entered);
+            if (problem.answers.trim() === answer_entered.trim()) {
+                console.log('valid answer!')
+                correct_answer = true;
+            }
         }
 
         if (correct_answer) {
+
+            var user= 10;
+            var point = 1;
+//            rewardPoints.updatePoints(user, point);
+
+            console.log(problem.answers.trim());
+            console.log(answer_entered.trim());
+
             console.log('render new problem')
             randomNo = randomFromInterval(0,31);
             console.log(randomNo);
