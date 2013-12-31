@@ -43,6 +43,8 @@ exports.validate_problem = function (req, res) {
 
         Points.updatePoint(point);
 
+        // emit another event to refresh the score
+        pointsEvent.emitRefreshScore(userId);
     });
 
     var problem_id = req.param('problem_id');
@@ -63,6 +65,7 @@ exports.validate_problem = function (req, res) {
 
         if (correct_answer) {
 
+            // update points only for logged in user's
             if (typeof(userId) != 'undefined') {
                 // emit the event
                 pointsEvent.emitUpdatePoints(5);

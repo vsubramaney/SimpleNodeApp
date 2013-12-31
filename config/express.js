@@ -15,6 +15,7 @@ module.exports = function (app, config, passport) {
     app.set('views', config.root + '/app/views')
     app.set('view engine', 'jade')
 
+
     app.configure(function () {
         // expose package.json to views
         app.use(function (req, res, next) {
@@ -49,5 +50,6 @@ module.exports = function (app, config, passport) {
         app.use(helpers(pkg.name))
 
         app.use(app.router)
+
     });
 }
