@@ -7,8 +7,9 @@
  */
 var mongoose = require('mongoose')
     , Problems = mongoose.model('Problems')
+    , Points = mongoose.model('Points')
     , utils = require('../../lib/utils')
-  //  , rewardPoints = require('./rewardPoints')
+    , rewardPoints = require('./rewardPointsController')
 
 
 exports.new_problem = function (req, res) {
@@ -23,6 +24,27 @@ exports.new_problem = function (req, res) {
 }
 
 exports.validate_problem = function (req, res) {
+
+    var userId = req.session.passport.user;
+
+    console.log("userId -"+userId);
+
+    // register the event
+    var pointsEvent = new rewardPoints(userId);
+
+    // act upon the event
+    pointsEvent.on('updatePoints', function(userId, newPoints){
+
+        // update points for the user
+        var point = new Points({
+            user : userId,
+            rewardPoint : newPoints
+        });
+
+        Points.updatePoint(point);
+
+    });
+
     var problem_id = req.param('problem_id');
     var answer_entered = req.param('answer');
     Problems.load(problem_id, function(error, problem){
@@ -41,9 +63,12 @@ exports.validate_problem = function (req, res) {
 
         if (correct_answer) {
 
-            var user= 10;
-            var point = 1;
-//            rewardPoints.updatePoints(user, point);
+            if (typeof(userId) != 'undefined') {
+                // emit the event
+                pointsEvent.emitUpdatePoints(5);
+            } else {
+                console.log("Guest user!");
+            }
 
             console.log(problem.answers.trim());
             console.log(answer_entered.trim());

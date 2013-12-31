@@ -8,13 +8,13 @@ var async = require('async')
  * Controllers
  */
 
-var users = require('../app/controllers/user')
-    , admin = require('../app/controllers/admin')
+var users = require('../app/controllers/userController')
+    , admin = require('../app/controllers/adminController')
     , auth = require('./middlewares/authorization')
-    , problems = require('../app/controllers/problems')
-    , mainConsole = require('../app/controllers/mainConsole')
-    , game = require('../app/controllers/game')
-    , video = require('../app/controllers/video')
+    , problems = require('../app/controllers/problemsController')
+    , mainConsole = require('../app/controllers/learnNPlayMainController')
+    , game = require('../app/controllers/gameController')
+    , video = require('../app/controllers/videoController')
 //    , test = require('../app/controllers/test')
 
 
